@@ -1,0 +1,19 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: web-show-network-delay
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      app: web-show
+  delay:
+    latency: "1000ms"
+    correlation: "100"
+    jitter: "100ms"
+  direction: to
+  duration: "1m"
